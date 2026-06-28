@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#06070C" />
+    <!-- set theme before paint to avoid a flash -->
+    <script>
+      try {
+        document.documentElement.dataset.theme = localStorage.getItem('net-theme') || 'dark'
+      } catch (e) {
+        document.documentElement.dataset.theme = 'dark'
+      }
+    </script>
+    <meta
+      name="description"
+      content="From a single neuron to Opus 4.8 — an interactive, cinematic journey through how large language models are built, trained, and run."
+    />
+    <title>NET — From a Neuron to Opus 4.8</title>
+
+    <!-- Distinctive type system: Clash Display (display), Hanken Grotesk (body), JetBrains Mono (data) -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700,500&f[]=hanken-grotesk@400,500,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- WebGL stage: a single fixed canvas behind everything -->
+    <canvas id="gl" aria-hidden="true"></canvas>
+
+    <!-- HTML labels projected onto 3D positions (crisp text over WebGL) -->
+    <div id="labels" aria-hidden="true"></div>
+
+    <!-- Atmosphere overlays -->
+    <div id="grain" aria-hidden="true"></div>
+    <div id="vignette" aria-hidden="true"></div>
+
+    <!-- The scrolling prose / beats for the current chapter is injected here -->
+    <main id="scroll" tabindex="-1"></main>
+
+    <!-- Persistent UI chrome (spine nav, legend, header) is injected here -->
+    <div id="ui"></div>
+
+    <!-- Transition veil between chapters -->
+    <div id="veil" aria-hidden="true"></div>
+
+    <!-- Shown only if WebGL is unavailable -->
+    <noscript>
+      <div class="hard-fallback">This experience needs JavaScript enabled.</div>
+    </noscript>
+    <div id="webgl-fallback" hidden>
+      <div class="hard-fallback">
+        <h1>Your browser can't run WebGL.</h1>
+        <p>The visual journey needs a WebGL-capable browser. The written explanations still work — scroll on.</p>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
